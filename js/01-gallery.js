@@ -1,10 +1,10 @@
 import { galleryItems } from './gallery-items.js';
+console.log(galleryItems);
 
 // Change code below this line
 
-console.log(galleryItems);
-const galleryRef = document.querySelector('.gallery');
-console.log('galleryRef:', galleryRef);
+const parentItemsRef = document.querySelector('.gallery');
+console.log('parentItemsRef:', parentItemsRef);
 
 function createGalleryMarkup(arrItems) {
   return arrItems
@@ -23,10 +23,10 @@ function createGalleryMarkup(arrItems) {
     .join('');
 }
 
-galleryRef.innerHTML = createGalleryMarkup(galleryItems);
+parentItemsRef.innerHTML = createGalleryMarkup(galleryItems);
 // console.log(createGalleryMarkup(galleryItems));
 
-galleryRef.addEventListener('click', onGalleryItemClick);
+parentItemsRef.addEventListener('click', onGalleryItemClick);
 
 function onGalleryItemClick(e) {
   e.preventDefault();

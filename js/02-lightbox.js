@@ -2,17 +2,15 @@ import { galleryItems } from './gallery-items.js';
 console.log(galleryItems);
 
 // Change code below this line
-
 const parentItemsRef = document.body.querySelector('.gallery');
-
-galleryItemsMarkup(galleryItems, parentItemsRef);
+console.log('parentItemsRef:', parentItemsRef);
 
 function galleryItemsMarkup(arrItems, parentRef) {
   const itemsMarkup = arrItems
     .map(({ preview, original, description }) => {
       return `<div class="gallery__item">
                 <a class="gallery__item" href="${original}">
-                    <img class="gallery__image" src="${preview}" alt="rrrr" />
+                    <img class="gallery__image" src="${preview}" alt="${description}" />
                 </a>
              </div>`;
     })
@@ -21,7 +19,11 @@ function galleryItemsMarkup(arrItems, parentRef) {
   return (parentRef.innerHTML = itemsMarkup);
 }
 
-const gallery = new SimpleLightbox('.gallery a', {
+galleryItemsMarkup(galleryItems, parentItemsRef);
+
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
   captionDelay: 250,
 });
-console.log('SimpleLightbox:', SimpleLightbox);
+
+console.log(lightbox);
