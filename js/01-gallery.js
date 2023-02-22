@@ -34,13 +34,28 @@ function onGalleryItemClick(e) {
   if (!e.target.hasAttribute('data-source')) {
     return;
   }
-  console.log(e.target);
+  // console.log(e.target);
 
   const instance = basicLightbox.create(
-    `
-    <img src="${e.target.getAttribute('data-source')}">
-`
+    `<img src="${e.target.getAttribute('data-source')}" alt="${e.target.getAttribute('alt')}">`,
+    {
+      onShow: (instance) => {
+        window.addEventListener('keydown', onEscClick);
+        console.log('listen Esc');
+      },
+
+      onClose: (instance) => {
+        window.removeEventListener('keydown', onEscClick);
+        console.log("don't listen Esc");
+      },
+    }
   );
+
+  function onEscClick(evt) {
+    if (evt.code === 'Escape') {
+      instance.close();
+    }
+  }
 
   instance.show(() => console.log('lightbox now visible'));
 }
